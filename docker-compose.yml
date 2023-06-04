@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15.3
+    restart: always
+    environment:
+      - POSTGRES_USER=challenge
+      - POSTGRES_PASSWORD=challenge123
+    ports:
+      - '5432:5432'
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+volumes:
+  db-volume:
