@@ -1,5 +1,3 @@
-
-
 import { Module } from '@nestjs/common';
 import { WalletController } from './wallet.controller';
 import { WalletService } from './wallet.service';
@@ -10,4 +8,4 @@ import { WalletService } from './wallet.service';
   exports: [WalletService],
   controllers: [WalletController],
 })
-export class WalletModule { }
+export class WalletModule {}
