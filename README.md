@@ -32,6 +32,10 @@ npm run start
 $ npm run start:dev
 ```
 
+## Swagger
+
+You can check Swagger API at http://localhost:3002/api - Are not totally finished but its works.
+
 The APP will run at http://localhost:3002
 
 Here are some wallet addresses to check out the app, I took from the Transactions API because I couldn't find the API to get wallets, so if you use some of these you should try the full app.
