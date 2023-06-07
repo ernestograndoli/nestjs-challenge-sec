@@ -1,5 +1,17 @@
 # Challenge-NestJs
 
+## Database
+
+This project uses PostgreSQL, you need to install and create a database and run the file called dbSQL.sql which is in the root of the project to create those tables.
+
+## Docker
+
+To run the database you need to have docker and execute the next command at cmd/bash to create the image of PostgreSQL
+
+```cmd
+docker compose up
+```
+
 ## Installation
 
 To install de dependencies of node you have to run the next command at cmd/bash.
@@ -21,3 +33,10 @@ $ npm run start:dev
 ```
 
 The APP will run at http://localhost:3002
+
+Here you have some wallets addresses to check the app, I took from the api because I could not find the api to get wallets, so, If you use some of this you should try the complete app.
+
+- 0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a
+- 0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
+- 0x63a9975ba31b0b9626b34300f7f627147df1f526
+- 0x198ef1ec325a96cc354c7266a038be8b5c558f67
