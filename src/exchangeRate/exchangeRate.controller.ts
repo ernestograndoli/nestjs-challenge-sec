@@ -1,5 +1,5 @@
 import { Controller, Get, Put, Body, Param } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ExchangeRateService } from './exchangeRate.service';
 import { ExchangeRateDto } from '../dtos';
 
@@ -12,23 +12,25 @@ export class ExchangeRateController {
     description: 'Exchange rates information',
     type: ExchangeRateDto,
   })
+  @ApiResponse({
+    status: 404,
+    description: 'Exchange rates information bad request',
+  })
   @Get('/')
-  async getAll(): Promise<ExchangeRateDto[]> {
-    const exchangeRate = await this.exchangeRateService.getAll();
-
-    return exchangeRate.map((i) => ({
-      id: i.id,
-      currency: i.currency,
-      value: i.value,
-    }));
+  async getAll() {
+    return await this.exchangeRateService.getAll();
   }
 
   @ApiOkResponse({
-    description: 'Exchange rates information by ID ',
+    description: 'Exchange rates information by ID',
     type: ExchangeRateDto,
   })
+  @ApiResponse({
+    status: 404,
+    description: 'Exchange rates information by ID bad request',
+  })
   @Get('/:id')
-  async get(@Param('id') id: number): Promise<ExchangeRateDto[]> {
+  async get(@Param('id') id: number) {
     const exchangeRate = await this.exchangeRateService.get(id);
 
     return exchangeRate;
@@ -38,10 +40,14 @@ export class ExchangeRateController {
     description: 'Exchange rates updated successfully',
     type: ExchangeRateDto,
   })
+  @ApiResponse({
+    status: 404,
+    description: 'Exchange rates updated bad request',
+  })
   @Put('/:id')
   async update(@Param('id') id: number, @Body() body: ExchangeRateDto) {
     const exchangeRate = await this.exchangeRateService.update(id, body);
-
+    console.log('exchangeRate: ', exchangeRate);
     return exchangeRate;
   }
 }

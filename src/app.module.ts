@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
 import { WalletModule, WalletController, WalletService } from './wallet/index';
 import {
   ExchangeRateModule,
@@ -9,7 +8,7 @@ import {
 } from './exchangeRate/index';
 
 @Module({
-  imports: [WalletModule, ExchangeRateModule],
+  imports: [ConfigModule.forRoot(), WalletModule, ExchangeRateModule],
   controllers: [WalletController, ExchangeRateController],
   providers: [WalletService, ExchangeRateService],
 })

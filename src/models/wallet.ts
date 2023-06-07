@@ -9,13 +9,17 @@ export const WalletModel = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     privatekey: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: true,
+    favourite: {
+      type: DataTypes.BOOLEAN,
+      default: false,
     },
   },
   {
