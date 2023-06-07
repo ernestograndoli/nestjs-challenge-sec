@@ -4,6 +4,7 @@ import { WalletModel } from '../models/wallet';
 import { WaleltUpdateDto, WalletDto } from '../dtos';
 import { ok, badRequest } from '../utils/httpResponse';
 import { walletModelToDto } from '../utils/mappers';
+import { walletAtLeastOneYear } from '../utils/walletAtLeastOneYear';
 export class WalletService {
   async getAll(orderBy?: typeof WalletModel, order?: string) {
     try {
@@ -37,7 +38,6 @@ export class WalletService {
       const response = walletModelToDto(
         await WalletModel.create({
           address: body.address,
-          privatekey: null,
           favourite: body.favourite,
         }),
       );
@@ -64,6 +64,19 @@ export class WalletService {
     }
   }
 
+  async delete(address: string) {
+    try {
+      const response = await WalletModel.destroy({
+        where: { address: address },
+        returning: true,
+        plain: true,
+      });
+      return ok(walletModelToDto(response));
+    } catch (e) {
+      return badRequest('Error');
+    }
+  }
+
   async getAccountBalanceInCurrency(
     address: string,
     rate: number,
@@ -79,6 +92,28 @@ export class WalletService {
         },
       });
       return ok(convertWeiToCurrency(response.data.result, rate));
+    } catch (error) {
+      return badRequest('Error');
+    }
+  }
+
+  async isOldWallet(address: string): Promise<any> {
+    try {
+      const response = await axios.get('https://api.etherscan.io/api', {
+        params: {
+          module: 'account',
+          action: 'txlist',
+          address,
+          startblock: 0,
+          endblock: 99999999,
+          sort: 'asc',
+          apikey: process.env.ETHERSCAN_API_KEY,
+        },
+      });
+      const timeStamps = response.data.result.map((i) => {
+        return i.timeStamp;
+      });
+      return ok(walletAtLeastOneYear(timeStamps));
     } catch (error) {
       return badRequest('Error');
     }

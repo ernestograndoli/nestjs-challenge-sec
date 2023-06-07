@@ -13,10 +13,6 @@ export const WalletModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    privatekey: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     favourite: {
       type: DataTypes.BOOLEAN,
       default: false,

@@ -29,7 +29,7 @@ export class ExchangeRateService {
   async update(id: number, body: typeof ExchangeRateModel) {
     try {
       const response = await ExchangeRateModel.update(
-        { value: body.value },
+        { rate: body.rate },
         { where: { id: id }, returning: true, plain: true },
       );
       return ok(exchangeRateModelToDto(response[1].dataValues));

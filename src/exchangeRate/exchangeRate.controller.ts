@@ -13,7 +13,7 @@ export class ExchangeRateController {
     type: ExchangeRateDto,
   })
   @ApiResponse({
-    status: 404,
+    status: 400,
     description: 'Exchange rates information bad request',
   })
   @Get('/')
@@ -26,7 +26,7 @@ export class ExchangeRateController {
     type: ExchangeRateDto,
   })
   @ApiResponse({
-    status: 404,
+    status: 400,
     description: 'Exchange rates information by ID bad request',
   })
   @Get('/:id')
@@ -41,7 +41,7 @@ export class ExchangeRateController {
     type: ExchangeRateDto,
   })
   @ApiResponse({
-    status: 404,
+    status: 400,
     description: 'Exchange rates updated bad request',
   })
   @Put('/:id')

@@ -8,7 +8,7 @@ export const convertWeiToCurrency = (wei: string, exchangeRate: number) => {
     // Calculate the value in currency
     const dollars = ethValue * exchangeRate;
 
-    // Round the result to 2 decimal places
+    // Round the result to 2 decimal
     const roundedDollars = Math.round(dollars * 100) / 100;
 
     return roundedDollars;

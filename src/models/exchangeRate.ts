@@ -14,7 +14,7 @@ export const ExchangeRateModel = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    value: {
+    rate: {
       type: DataTypes.NUMBER,
       allowNull: false,
     },

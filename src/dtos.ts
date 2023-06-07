@@ -5,8 +5,6 @@ export class WalletDto {
   id: number;
   @ApiProperty({ description: 'Wallet Address - PRIMARY KEY' })
   address: string;
-  @ApiProperty({ description: 'Wallet Private Key' })
-  privatekey: string;
   @ApiProperty({ description: 'Wallet favourite - TRUE or FALSE' })
   favourite: boolean;
 }
@@ -21,6 +19,6 @@ export class ExchangeRateDto {
   id: number;
   @ApiProperty({ description: 'Currency Name' })
   currency: string;
-  @ApiProperty({ description: 'Ethereum value' })
-  value: number;
+  @ApiProperty({ description: 'Rate value' })
+  rate: number;
 }

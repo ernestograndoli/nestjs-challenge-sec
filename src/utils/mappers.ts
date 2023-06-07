@@ -6,7 +6,6 @@ export const walletModelToDto = (model: typeof WalletModel): WalletDto => ({
   id: model.id,
   address: model.address,
   favourite: model.favourite,
-  privatekey: model.privatekey,
 });
 
 export const exchangeRateModelToDto = (
@@ -14,5 +13,5 @@ export const exchangeRateModelToDto = (
 ): ExchangeRateDto => ({
   id: model.id,
   currency: model.currency,
-  value: model.value,
+  rate: model.rate,
 });

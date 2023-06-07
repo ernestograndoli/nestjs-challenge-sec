@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Put, Body, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+  Query,
+} from '@nestjs/common';
 import { ApiOkResponse, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { WalletService } from './wallet.service';
 import { WalletDto, WaleltUpdateDto } from '../dtos';
@@ -30,7 +39,7 @@ export class WalletController {
     type: WalletDto,
   })
   @ApiResponse({
-    status: 404,
+    status: 400,
     description: 'Wallet created bad request',
   })
   @Post('/')
@@ -44,7 +53,7 @@ export class WalletController {
     type: WalletDto,
   })
   @ApiResponse({
-    status: 404,
+    status: 400,
     description: 'Wallet to favourite failed',
   })
   @Put('/:address')
@@ -56,8 +65,20 @@ export class WalletController {
   }
 
   @ApiOkResponse({
+    description: 'Wallet deleted successfully',
+    type: WalletDto,
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Wallet deleted failed',
+  })
+  @Delete('/:address')
+  async delete(@Param('address') address: string) {
+    return await this.walletService.delete(address);
+  }
+
+  @ApiOkResponse({
     description: 'Balance currency information',
-    //type: WalletDto,
   })
   @ApiResponse({
     status: 400,
@@ -69,5 +90,17 @@ export class WalletController {
     @Param('rate') rate: number,
   ): Promise<any> {
     return this.walletService.getAccountBalanceInCurrency(address, rate);
+  }
+
+  @ApiOkResponse({
+    description: 'Wallet is old.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Wallet is old bad request',
+  })
+  @Get(':address/isOldWallet')
+  async isOldWallet(@Param('address') address: string): Promise<any> {
+    return this.walletService.isOldWallet(address);
   }
 }
