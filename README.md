@@ -34,7 +34,7 @@ $ npm run start:dev
 
 The APP will run at http://localhost:3002
 
-Here you have some wallets addresses to check the app, I took from the api because I could not find the api to get wallets, so, If you use some of this you should try the complete app.
+Here are some wallet addresses to check out the app, I took from the Transactions API because I couldn't find the API to get wallets, so if you use some of these you should try the full app.
 
 - 0xddbd2b932c763ba5b1b7ae3b362eac3e8d40121a
 - 0xde0b295669a9fd93d5f28d9ec85e40f4cb697bae
